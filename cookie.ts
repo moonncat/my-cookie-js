@@ -1,4 +1,8 @@
 ﻿export class MyCookie {
+    document:Document;
+    constructor(document:Document){
+        this.document=document;
+    }
 
     set(key: string, val: string, expires: string = "", path: string = "") {
         var ck = key + "=" + val;
@@ -10,11 +14,11 @@
         if (expires && expires.length > 0) {
             ck += ";expires=" + expires;
         }
-        document.cookie = ck;
+        this.document.cookie = ck;
     }
 
     get(key: string) {
-        var cookie = document.cookie;
+        var cookie = this.document.cookie;
         var reg = new RegExp(key + "=[^;]*(;|$)");
         var result = reg.exec(cookie);
         if (!result || result.length < 1) {

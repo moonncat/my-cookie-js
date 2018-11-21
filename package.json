@@ -2,7 +2,7 @@
   "name": "my-cookie-js",
   "version": "0.0.3",
   "main": "cookie.js",
-  "description": "Get and set key/value into cookie",
+  "description": "Get and set key/value from cookie",
   "scripts": {
     "test": "mocha --reporter=spec test.js"
   },
@@ -13,7 +13,8 @@
     "tsconfig.json"
   ],
   "keywords": [
-    "cookie"
+    "cookie",
+    "my-cookie"
   ],
   "author": {
     "name": "Dino",
@@ -23,5 +24,7 @@
   "license": "MIT",
   "devDependencies": {
     "mocha": "^5.2.0"
+  },
+  "dependencies": {
   }
 }

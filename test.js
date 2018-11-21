@@ -1,32 +1,37 @@
 'use strict';
 
+this.window = {
+  document: { cookie: "key3={'key':'val'}; path=/; key4=!@#$%^&*()<>'/.,?; path=/; " }
+}
 var file = require('./cookie');
-var mc =new file.MyCookie();
+var mc = new file.MyCookie(this.window.document);
+var assert = require('assert');
 
-mc.set("key1", "val1");
-mc.set("key2", "val2");
-mc.set("key3", "{'key':'val'}");
-mc.set("key4", "!@#$%^&*()<>'/.,?");
-console.log(document.cookie);
+describe('set and get', function () {
+  var count=0;
+  assert.strictEqual(mc.get("key3"), "{'key':'val'}", 'should return {"key":"val"}');
+  count++;
+  assert.strictEqual(mc.get("key4"), "!@#$%^&*()<>'/.,?", 'should return !@#$%^&*()<>"/.,?');
+  count++;
+  
+  mc.set("key1", "val1");
+  assert.strictEqual(mc.get("key1"), "val1", 'should return val1');
+  count++;
 
-var isPassed = true;
-if (mc.get("key1") !== "val1") {
-  console.log("key1 not matched");
-  isPassed = false;
-}
-if (mc.get("key2") !== "val2") {
-  console.log("key2 not matched");
-  isPassed = false;
-}
-if (mc.get("key3") !== "{'key':'val'}") {
-  console.log("key3 not matched");
-  isPassed = false;
-}
-if (mc.get("key4") !== "!@#$%^&*()<>'/.,?") {
-  console.log("key4 not matched");
-  isPassed = false;
-}
-if (!isPassed) {
-  throw "test failed";
-}
+  mc.set("key2", "val2");
+  assert.strictEqual(mc.get("key2"), "val2", 'should return val2');
+  count++;
+  
+  mc.set("key3", "{'key':'val'}");
+  assert.strictEqual(mc.get("key3"), "{'key':'val'}", 'should return {"key":"val"}');
+  count++;
+
+  mc.set("key4", "!@#$%^&*()<>'/.,?");
+  assert.strictEqual(mc.get("key4"), "!@#$%^&*()<>'/.,?", 'should return !@#$%^&*()<>"/.,?');
+  count++;
+  
+
+  console.log(count+' test(s).');
+});
+
 

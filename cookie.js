@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var MyCookie = /** @class */ (function () {
-    function MyCookie() {
+    function MyCookie(document) {
+        this.document = document;
     }
     MyCookie.prototype.set = function (key, val, expires, path) {
         if (expires === void 0) { expires = ""; }
@@ -16,11 +17,10 @@ var MyCookie = /** @class */ (function () {
         if (expires && expires.length > 0) {
             ck += ";expires=" + expires;
         }
-        document.cookie = ck;
+        this.document.cookie = ck;
     };
     MyCookie.prototype.get = function (key) {
-        var cookie = "";
-        cookie = document.cookie;
+        var cookie = this.document.cookie;
         var reg = new RegExp(key + "=[^;]*(;|$)");
         var result = reg.exec(cookie);
         if (!result || result.length < 1) {
