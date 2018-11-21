@@ -1,0 +1,27 @@
+{
+  "name": "my-cookie-js",
+  "version": "0.0.3",
+  "main": "cookie.js",
+  "description": "Get and set key/value into cookie",
+  "scripts": {
+    "test": "mocha --reporter=spec test.js"
+  },
+  "files": [
+    "cookie.ts",
+    "cookie.js",
+    "cookie.d.ts",
+    "tsconfig.json"
+  ],
+  "keywords": [
+    "cookie"
+  ],
+  "author": {
+    "name": "Dino",
+    "email": "roragnarok@qq.com"
+  },
+  "homepage": "https://github.com/moonncat/my-cookie-js",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
