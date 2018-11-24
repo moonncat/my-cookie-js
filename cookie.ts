@@ -1,10 +1,17 @@
 ﻿export class MyCookie {
-    document:Document;
-    constructor(document:Document){
-        this.document=document;
+    document: Document;
+    constructor(document: Document) {
+        this.document = document;
     }
 
-    set(key: string, val: string, expires: string = "", path: string = "") {
+    setObject(key: string, val: object, expires: string = "", path: string = ""): void {
+        var str = "";
+        if (val) {
+            str = JSON.stringify(val);
+        }
+        this.set(key, str, expires, path);
+    }
+    set(key: string, val: string, expires: string = "", path: string = ""): void {
         var ck = key + "=" + val;
         if (path && path.length > 0) {
             ck += ";path=/" + path;
@@ -16,8 +23,18 @@
         }
         this.document.cookie = ck;
     }
-
-    get(key: string) {
+    delete(key: string): void {
+        this.set(key, "", new Date().toISOString());
+    }
+    getObject(key: string): any {
+        var json = this.get(key);
+        if (json && json.length > 2) {
+            return JSON.parse(json);
+        } else {
+            return undefined;
+        }
+    }
+    get(key: string): any {
         var cookie = this.document.cookie;
         var reg = new RegExp(key + "=[^;]*(;|$)");
         var result = reg.exec(cookie);

@@ -4,6 +4,15 @@ var MyCookie = /** @class */ (function () {
     function MyCookie(document) {
         this.document = document;
     }
+    MyCookie.prototype.setObject = function (key, val, expires, path) {
+        if (expires === void 0) { expires = ""; }
+        if (path === void 0) { path = ""; }
+        var str = "";
+        if (val) {
+            str = JSON.stringify(val);
+        }
+        this.set(key, str, expires, path);
+    };
     MyCookie.prototype.set = function (key, val, expires, path) {
         if (expires === void 0) { expires = ""; }
         if (path === void 0) { path = ""; }
@@ -18,6 +27,18 @@ var MyCookie = /** @class */ (function () {
             ck += ";expires=" + expires;
         }
         this.document.cookie = ck;
+    };
+    MyCookie.prototype.delete = function (key) {
+        this.set(key, "", new Date().toISOString());
+    };
+    MyCookie.prototype.getObject = function (key) {
+        var json = this.get(key);
+        if (json && json.length > 2) {
+            return JSON.parse(json);
+        }
+        else {
+            return undefined;
+        }
     };
     MyCookie.prototype.get = function (key) {
         var cookie = this.document.cookie;
