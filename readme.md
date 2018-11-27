@@ -22,6 +22,13 @@ mc.set('key1','val1');
 
 mc.get('key1');
 //val1
+
+mc.setObject('key2',{name:'name1'});
+//document.cookie
+//key2={name="name1"};path=/
+
+mc.get('key2');
+//"{name=\"name1\"}"
 ```
 
 **
@@ -29,4 +36,4 @@ mc.get('key1');
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Dino]
