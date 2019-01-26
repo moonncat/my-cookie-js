@@ -1,8 +1,4 @@
 ﻿export class MyCookie {
-    document: Document;
-    constructor(document: Document) {
-        this.document = document;
-    }
 
     setObject(key: string, val: object, expires: string = "", path: string = ""): void {
         var str = "";
@@ -21,7 +17,7 @@
         if (expires && expires.length > 0) {
             ck += ";expires=" + expires;
         }
-        this.document.cookie = ck;
+        document.cookie = ck;
     }
     delete(key: string): void {
         this.set(key, "", new Date().toISOString());
@@ -35,7 +31,10 @@
         }
     }
     get(key: string): any {
-        var cookie = this.document.cookie;
+		if(!document)
+			return "";
+		
+        var cookie = document.cookie;
         var reg = new RegExp(key + "=[^;]*(;|$)");
         var result = reg.exec(cookie);
         if (!result || result.length < 1) {

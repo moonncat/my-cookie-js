@@ -25,10 +25,10 @@ mc.get('key1');
 
 mc.setObject('key2',{name:'name1'});
 //document.cookie
-//key2={name="name1"};path=/
+//key2={\"name\":\"name1\"};path=/
 
 mc.get('key2');
-//"{name=\"name1\"}"
+//"{\"name\":\"name1\"}"
 ```
 
 **
